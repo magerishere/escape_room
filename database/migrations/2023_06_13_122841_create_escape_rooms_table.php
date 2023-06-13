@@ -12,6 +12,10 @@ return new class extends Migration {
     {
         Schema::create('escape_rooms', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(\App\Models\EscapeRoomTheme::class)->nullable()->constrained()->nullOnDelete();
+            $table->string('title', 120);
+            $table->integer('max_uses'); // participant
+            $table->softDeletes();
             $table->timestamps();
         });
     }
