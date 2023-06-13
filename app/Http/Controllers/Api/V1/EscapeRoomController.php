@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Facades\EscapeRoom\EscapeRoomFacade;
+use App\Http\Resources\V1\EscapeRoomCollection;
 use App\Models\EscapeRoom;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,7 @@ class EscapeRoomController extends ApiController
      */
     public function index()
     {
-        //
+        return response()->json(new EscapeRoomCollection(EscapeRoomFacade::getAll()));
     }
 
     /**
@@ -20,7 +22,7 @@ class EscapeRoomController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

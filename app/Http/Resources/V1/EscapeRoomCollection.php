@@ -15,7 +15,13 @@ class EscapeRoomCollection extends ResourceCollection
     public function toArray(Request $request): array
     {
         return [
-            'data' => $this->collection,
+            'data' => $this->collection->map(function ($escapeRoom) {
+                return [
+                    'id' => $escapeRoom->id,
+                    'title' => $escapeRoom->title,
+                    'max_uses' => $escapeRoom->max_uses,
+                ];
+            }),
         ];
     }
 }
