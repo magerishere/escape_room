@@ -19,4 +19,9 @@ class EscapeRoom extends Model
     protected $casts = [
         'max_uses' => 'int',
     ];
+
+    public function dates()
+    {
+        return $this->hasMany(EscapeRoomDate::class);
+    }
 }

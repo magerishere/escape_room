@@ -20,4 +20,10 @@ class EscapeRoomTime extends Model
         'begin' => 'date:H:i:s',
         'end' => 'date:H:i:s'
     ];
+
+    public function date()
+    {
+        return $this->belongsTo(EscapeRoomDate::class);
+    }
+
 }

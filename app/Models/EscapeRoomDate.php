@@ -18,4 +18,14 @@ class EscapeRoomDate extends Model
     protected $casts = [
         'available_at' => 'date'
     ];
+
+    public function room()
+    {
+        return $this->belongsTo(EscapeRoom::class);
+    }
+
+    public function times()
+    {
+        return $this->hasMany(EscapeRoomTime::class);
+    }
 }
