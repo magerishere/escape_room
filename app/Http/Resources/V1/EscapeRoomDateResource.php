@@ -15,6 +15,7 @@ class EscapeRoomDateResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'available_at' => $this->available_at->format('Y-m-d'),
             'times' => EscapeRoomTimeResource::collection($this->times),
         ];

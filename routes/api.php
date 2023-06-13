@@ -21,4 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->as('v1.')->group(function () {
     Route::apiResource('escape-rooms', EscapeRoomController::class)->only(['index', 'show']);
+    Route::get('escape-rooms/{escape_room}/time-slots', [EscapeRoomController::class, 'showTimes']);
 });
