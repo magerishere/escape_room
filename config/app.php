@@ -169,6 +169,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         \App\Providers\Facades\EscapeRoomFacadeServiceProvider::class,
+        \App\Providers\Facades\EscapeRoomThemeFacadeServiceProvider::class,
     ])->toArray(),
 
     /*
