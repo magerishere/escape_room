@@ -16,7 +16,7 @@ class EscapeRoomDate extends Model
     ];
 
     protected $casts = [
-        'available_at' => 'date'
+        'available_at' => 'date:Y-m-d'
     ];
 
     public function room()
