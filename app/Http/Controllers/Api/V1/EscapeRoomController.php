@@ -14,7 +14,7 @@ class EscapeRoomController extends ApiController
      */
     public function index()
     {
-        return response()->json(new EscapeRoomCollection(EscapeRoomFacade::getAll()));
+        return new EscapeRoomCollection(EscapeRoomFacade::getAllAsPaginate());
     }
 
     /**
