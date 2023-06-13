@@ -17,7 +17,7 @@ class EscapeRoomThemeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            // 'title' -> get from outside
         ];
     }
 }
