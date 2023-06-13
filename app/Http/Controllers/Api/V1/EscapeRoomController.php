@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Models\EscapeRoom;
 use Illuminate\Http\Request;
 
-class EscapeRoomController extends Controller
+class EscapeRoomController extends ApiController
 {
     /**
      * Display a listing of the resource.
