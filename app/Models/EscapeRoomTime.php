@@ -26,4 +26,5 @@ class EscapeRoomTime extends Model
         return $this->belongsTo(EscapeRoomDate::class);
     }
 
+
 }
