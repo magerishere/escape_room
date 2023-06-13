@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\EscapeRoomTheme;
 use Illuminate\Http\Request;
 
-class EscapeRoomThemeController extends Controller
+class EscapeRoomThemeController extends ApiController
 {
     /**
      * Display a listing of the resource.
