@@ -12,6 +12,10 @@ return new class extends Migration {
     {
         Schema::create('escape_room_times', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(\App\Models\EscapeRoomDate::class)->constrained()->cascadeOnDelete();
+            $table->time('begin');
+            $table->time('end');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
