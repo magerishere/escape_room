@@ -12,6 +12,8 @@ return new class extends Migration {
     {
         Schema::create('escape_room_themes', function (Blueprint $table) {
             $table->id();
+            $table->string('title', 50)->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
