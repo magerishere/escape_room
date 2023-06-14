@@ -2,10 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\Booking;
+use App\Models\EscapeRoom;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
@@ -91,6 +89,44 @@ class BookingTest extends TestCase
             'escape_room_time_id' => 1,
         ]);
         $response->assertStatus(403);
+    }
+
+    public function test_can_not_store_booking_when_user_already_booked()
+    {
+        $user = User::factory()->create();
+        Sanctum::actingAs($user);
+        $response = $this->post(route('api.v1.bookings.store'), [
+            'escape_room_time_id' => 1,
+        ]);
+        $response->assertCreated();
+
+        $response = $this->post(route('api.v1.bookings.store'), [
+            'escape_room_time_id' => 1,
+        ]);
+        $response->assertStatus(403);
+    }
+
+    public function test_can_not_store_booking_by_user_when_is_fully_booked()
+    {
+        $escapeRoom = EscapeRoom::factory()->create();
+        $escapeRoomTime = $escapeRoom->dates()->first()->times()->first();
+
+        $testCapacity = 3;
+        $escapeRoomTime->update([
+            'capacity' => $testCapacity,
+        ]);
+        for ($i = 0; $i < $testCapacity + 1; $i++) {
+            $user = User::factory()->create();
+            Sanctum::actingAs($user);
+            $response = $this->post(route('api.v1.bookings.store'), [
+                'escape_room_time_id' => $escapeRoomTime->id,
+            ]);
+            if ($i < $testCapacity) {
+                $response->assertCreated();
+            } else {
+                $response->assertStatus(403);
+            }
+        }
     }
 
     public function test_can_delete_self_booking_by_user()
