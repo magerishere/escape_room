@@ -21,7 +21,6 @@ class EscapeRoomCollection extends ResourceCollection
                     'id' => $escapeRoom->id,
                     'title' => $escapeRoom->title,
                     'max_uses' => $escapeRoom->max_uses,
-                    'price' => $escapeRoom->price,
                 ];
             }),
         ];

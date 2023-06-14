@@ -14,12 +14,10 @@ class EscapeRoom extends Model
     protected $fillable = [
         'title',
         'max_uses',
-        'price'
     ];
 
     protected $casts = [
         'max_uses' => 'int',
-        'price' => 'int',
     ];
 
     public function dates()
