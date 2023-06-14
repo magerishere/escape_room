@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         \App\Providers\Facades\EscapeRoomFacadeServiceProvider::class,
         \App\Providers\Facades\EscapeRoomThemeFacadeServiceProvider::class,
+        \App\Providers\Facades\ApiAuthFacadeServiceProvider::class,
     ])->toArray(),
 
     /*
