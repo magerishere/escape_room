@@ -39,8 +39,6 @@ class EscapeRoomTime extends Model
 
     public function isFulled(): Attribute
     {
-        \Log::alert($this->books()->count());
-        \Log::alert($this->capacity);
         return Attribute::make(
             get: fn(): bool => $this->books()->count() >= $this->capacity
         );
