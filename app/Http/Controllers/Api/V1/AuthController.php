@@ -11,6 +11,9 @@ class AuthController extends ApiController
 {
     public function login(AuthLoginRequest $request)
     {
-        ApiAuthFacade::loginViaPassword($request->get('email'), $request->get('password'));
+        $token = ApiAuthFacade::loginViaPassword($request->get('email'), $request->get('password'));
+        return response()->json([
+            'data' => $token,
+        ]);
     }
 }
