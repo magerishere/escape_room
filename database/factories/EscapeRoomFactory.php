@@ -21,7 +21,6 @@ class EscapeRoomFactory extends Factory
         return [
             // escape_room_theme_id -> get from outside
             'title' => $this->faker->title,
-            'max_uses' => $this->faker->numberBetween(0, 100),
         ];
     }
 

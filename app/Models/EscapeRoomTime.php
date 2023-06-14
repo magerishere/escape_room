@@ -16,13 +16,15 @@ class EscapeRoomTime extends Model
     protected $fillable = [
         'begin',
         'end',
-        'price'
+        'price',
+        'capacity'
     ];
 
     protected $casts = [
         'begin' => 'date:H:i:s',
         'end' => 'date:H:i:s',
-        'price' => 'int'
+        'price' => 'int',
+        'capacity' => 'int'
     ];
 
     public function date(): BelongsTo

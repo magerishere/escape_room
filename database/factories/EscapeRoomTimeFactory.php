@@ -21,6 +21,7 @@ class EscapeRoomTimeFactory extends Factory
             // begin -> get from outside
             // end -> get from outside
             'price' => 50000 * $this->faker->numberBetween(1, 10),
+            'capacity' => $this->faker->numberBetween(4, 20),
         ];
     }
 }

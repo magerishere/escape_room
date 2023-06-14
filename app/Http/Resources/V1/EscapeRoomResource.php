@@ -17,7 +17,6 @@ class EscapeRoomResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'max_uses' => $this->max_uses,
             'dates' => EscapeRoomDateResource::collection($this->whenLoaded('dates')),
         ];
     }

@@ -20,7 +20,6 @@ class EscapeRoomCollection extends ResourceCollection
                 return [
                     'id' => $escapeRoom->id,
                     'title' => $escapeRoom->title,
-                    'max_uses' => $escapeRoom->max_uses,
                 ];
             }),
         ];
