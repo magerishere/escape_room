@@ -27,7 +27,7 @@ class EscapeRoomFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (EscapeRoom $escapeRoom) {
-            for ($i = 0; $i < $this->faker->numberBetween(1, 5); $i++) {
+            for ($i = 0; $i < $this->faker->numberBetween(1, 3); $i++) {
                 $availableAt = now()->addDays($this->faker->numberBetween(1, 100),)->format('Y-m-d');
                 // if already dates exists,
                 if ($escapeRoom->dates()->whereDate('available_at', $availableAt)->exists()) {
