@@ -173,6 +173,7 @@ return [
         \App\Providers\Facades\ApiAuthFacadeServiceProvider::class,
         \App\Providers\Facades\UserFacadeServiceProvider::class,
         \App\Providers\Facades\BookingFacadeServiceProvider::class,
+        \App\Providers\Facades\EscapeRoomTimeFacadeServiceProvider::class,
     ])->toArray(),
 
     /*

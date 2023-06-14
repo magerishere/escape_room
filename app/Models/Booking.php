@@ -10,6 +10,8 @@ class Booking extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
+        'escape_room_time_id',
         'price',
         'discount_price',
     ];
@@ -24,9 +26,9 @@ class Booking extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function escapeRoomTime()
+    public function time()
     {
-        return $this->belongsTo(EscapeRoomTime::class);
+        return $this->belongsTo(EscapeRoomTime::class, 'escape_room_time_id', 'id');
     }
 
 }

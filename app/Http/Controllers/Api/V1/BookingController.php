@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Facades\Booking\BookingFacade;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\V1\BookingStoreRequest;
+use App\Http\Resources\BookingResource;
 use App\Http\Resources\V1\BookingCollection;
 use App\Models\Booking;
 use Illuminate\Http\Request;
@@ -21,9 +23,10 @@ class BookingController extends ApiController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BookingStoreRequest $request)
     {
-        //
+        $booking = BookingFacade::create($request->get('escape_room_time_id'));
+        return new BookingResource($booking);
     }
 
     /**

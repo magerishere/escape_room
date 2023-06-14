@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\App;
 use Illuminate\Validation\UnauthorizedException;
 use Illuminate\Validation\ValidationException;
 use Throwable;
@@ -55,7 +56,7 @@ class Handler extends ExceptionHandler
         }
 
         // by default in api request
-        return apiResponseMessage($e->getMessage());
+        return parent::render($request, $e);
     }
 
 }

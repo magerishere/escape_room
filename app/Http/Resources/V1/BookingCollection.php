@@ -19,7 +19,8 @@ class BookingCollection extends ResourceCollection
                 return [
                     'id' => $booking->id,
                     'price' => $booking->price,
-                    'discount_price' => $booking->discount_price
+                    'discount_price' => $booking->discount_price,
+                    'time' => new EscapeRoomTimeResource($booking->time),
                 ];
             }),
         ];
