@@ -22,10 +22,11 @@ if (!function_exists('apiResponseData')) {
 if (!function_exists('apiResponseMessage')) {
     /**
      * set response as 'message' key
-     * @param string $message
+     * @param string|array $message
+     * @param int $status
      * @return JsonResponse
      */
-    function apiResponseMessage(string $message, int $status = 200): JsonResponse
+    function apiResponseMessage(string|array $message, int $status = 200): JsonResponse
     {
         return response()->json([
             'message' => $message,
