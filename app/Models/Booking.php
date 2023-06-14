@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Booking extends Model
 {
@@ -21,12 +22,12 @@ class Booking extends Model
         'discount_price' => 'int'
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function time()
+    public function time(): BelongsTo
     {
         return $this->belongsTo(EscapeRoomTime::class, 'escape_room_time_id', 'id');
     }

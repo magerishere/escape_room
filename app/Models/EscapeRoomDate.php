@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EscapeRoomDate extends Model
@@ -19,12 +21,12 @@ class EscapeRoomDate extends Model
         'available_at' => 'date:Y-m-d'
     ];
 
-    public function room()
+    public function room(): BelongsTo
     {
         return $this->belongsTo(EscapeRoom::class);
     }
 
-    public function times()
+    public function times(): HasMany
     {
         return $this->hasMany(EscapeRoomTime::class);
     }
