@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Facades\Booking\BookingFacade;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\BookingCollection;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 
@@ -13,7 +15,7 @@ class BookingController extends ApiController
      */
     public function index()
     {
-        //
+        return new BookingCollection(BookingFacade::getAll());
     }
 
     /**
