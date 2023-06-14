@@ -11,11 +11,11 @@ if (!function_exists('apiResponseData')) {
      * @param mixed $data
      * @return JsonResponse
      */
-    function apiResponseData(mixed $data): JsonResponse
+    function apiResponseData(mixed $data, int $status = 200): JsonResponse
     {
         return response()->json([
             'data' => $data
-        ]);
+        ], $status);
     }
 }
 
@@ -25,11 +25,11 @@ if (!function_exists('apiResponseMessage')) {
      * @param string $message
      * @return JsonResponse
      */
-    function apiResponseMessage(string $message): JsonResponse
+    function apiResponseMessage(string $message, int $status = 200): JsonResponse
     {
         return response()->json([
             'message' => $message,
-        ]);
+        ], $status);
     }
 }
 
