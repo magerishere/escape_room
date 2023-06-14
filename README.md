@@ -26,7 +26,8 @@ You can read more at: [wikipedia](https://en.wikipedia.org/wiki/Facade_pattern)
   install `Postman`: [download](https://www.postman.com/downloads/)
 - I prepare for you
   my `postman collection`: [download](https://github.com/magerishere/escape_room/blob/master/public/escape_room.postman_collection)
-- If you download my `postman collection`,make sure your `env` postman has two key: `base_api_url` and `token`,or you
+- If you download my `postman collection`,make sure your `enviroment` postman has two key: `base_api_url` and `token`
+  which simply get your virtual host url and user token when authenticate,or you
   can move your own way.
 
 ## Run Testing Project
