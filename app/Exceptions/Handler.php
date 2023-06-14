@@ -38,33 +38,24 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e): JsonResponse|RedirectResponse|Response|\Symfony\Component\HttpFoundation\Response
     {
-        \Log::alert(get_class($e));
-        if (!$request->is('api/*')) {
+        if (!isApiRequest($request)) {
             return parent::render($request, $e);
         }
 
         if ($e instanceof UnauthorizedException) {
-            return response()->json([
-                'message' => __('auth.failed'),
-            ]);
+            return apiResponseMessage(__('auth.failed'));
         }
 
         if ($e instanceof AuthorizationException) {
-            return response()->json([
-                'message' => __('auth.must_login')
-            ]);
+            return apiResponseMessage(__('auth.must_login'));
         }
 
         if ($e instanceof ValidationException) {
-            return response()->json([
-                'message' => $e->errors(),
-            ]);
+            return apiResponseMessage($e->errors());
         }
 
-        return response()->json([
-            'message' => $e->getMessage(),
-        ]);
-
+        // by default in api request
+        return apiResponseMessage($e->getMessage());
     }
 
 }
