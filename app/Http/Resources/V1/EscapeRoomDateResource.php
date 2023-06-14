@@ -18,6 +18,7 @@ class EscapeRoomDateResource extends JsonResource
             'id' => $this->id,
             'available_at' => $this->available_at->format('Y-m-d'),
             'times' => EscapeRoomTimeResource::collection($this->times),
+
         ];
     }
 }

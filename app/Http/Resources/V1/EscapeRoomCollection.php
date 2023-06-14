@@ -20,6 +20,7 @@ class EscapeRoomCollection extends ResourceCollection
                 return [
                     'id' => $escapeRoom->id,
                     'title' => $escapeRoom->title,
+                    'theme' => $escapeRoom->theme->title,
                 ];
             }),
         ];
