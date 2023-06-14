@@ -4,6 +4,7 @@ namespace App\Facades\ApiAuth;
 
 
 use App\Facades\User\UserFacade;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\UnauthorizedException;
 
@@ -18,5 +19,11 @@ class ApiAuthService
         }
 
         return $user->createToken($email)->plainTextToken;
+    }
+
+    public function logout(): void
+    {
+        $user = Auth::user();
+        $user->tokens()->delete();
     }
 }
