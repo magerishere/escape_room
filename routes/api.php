@@ -23,15 +23,7 @@ Route::prefix('v1')->as('v1.')->group(function () {
     */
     Route::apiResource('escape-rooms', EscapeRoomController::class)->only(['index', 'show']);
     Route::get('escape-rooms/{escape_room}/time-slots', [EscapeRoomController::class, 'showTimes'])->name('escape-rooms.showTimes');
-
-    /*
-    |--------------------------------------------------------------------------
-    | Guest middleware
-    |--------------------------------------------------------------------------
-    */
-    Route::middleware('guest')->group(function () {
-        Route::post('login', [AuthController::class, 'login'])->name('auth.login');
-    });
+    Route::post('login', [AuthController::class, 'login'])->name('auth.login');
 
     /*
     |--------------------------------------------------------------------------
