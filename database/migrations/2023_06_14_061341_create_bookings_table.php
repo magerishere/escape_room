@@ -13,6 +13,9 @@ return new class extends Migration {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\EscapeRoomTime::class)->constrained()->cascadeOnDelete();
+            $table->integer('price');
+            $table->integer('discount_price')->nullable();
             $table->timestamps();
         });
     }
