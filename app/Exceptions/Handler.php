@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -37,6 +38,7 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e): JsonResponse|RedirectResponse|Response|\Symfony\Component\HttpFoundation\Response
     {
+        \Log::alert(get_class($e));
         if (!$request->is('api/*')) {
             return parent::render($request, $e);
         }
@@ -44,6 +46,12 @@ class Handler extends ExceptionHandler
         if ($e instanceof UnauthorizedException) {
             return response()->json([
                 'message' => __('auth.failed'),
+            ]);
+        }
+
+        if ($e instanceof AuthorizationException) {
+            return response()->json([
+                'message' => __('auth.must_login')
             ]);
         }
 
