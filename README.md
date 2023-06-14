@@ -14,7 +14,7 @@ You can read more at: [wikipedia](https://en.wikipedia.org/wiki/Facade_pattern)
 
 ## First Steps
 
-- Run `https://github.com/magerishere/escape_room.git` For Pull project from GitHub in your system.
+- Run `git clone https://github.com/magerishere/escape_room.git` For Pull project from GitHub in your system.
 - Run `composer install` for install needed package.
 - Run `cp .env.example .env` for create a copy of .env.example as `.env` project.
 - Fill the database credentials at `.env` file.
