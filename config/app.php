@@ -172,6 +172,7 @@ return [
         \App\Providers\Facades\EscapeRoomThemeFacadeServiceProvider::class,
         \App\Providers\Facades\ApiAuthFacadeServiceProvider::class,
         \App\Providers\Facades\UserFacadeServiceProvider::class,
+        \App\Providers\Facades\BookingFacadeServiceProvider::class,
     ])->toArray(),
 
     /*
