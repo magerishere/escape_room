@@ -29,6 +29,7 @@ You can read more at: [wikipedia](https://en.wikipedia.org/wiki/Facade_pattern)
 - If you download my `postman collection`,make sure your `enviroment` postman has two key: `base_api_url` and `token`
   which simply get your virtual host url and user token when authenticate,or you
   can move your own way.
+- Enjoy it.
 
 ## Run Testing Project
 
@@ -41,6 +42,7 @@ if you want run test in this project follow these steps:
 - Fill the database credentials at `.env.testing` file. **Note**: database credentials testing must different with main
   database credentials
 - Run `php artisan test` for running both Feature Test and Unit Test.
+- Happy Hacking!
 
 ## License
 
