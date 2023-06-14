@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static Booking create(int $escapeRoomTimeId, ?User $user = null)
  * @method static bool isAlreadyBooked(int $escapeRoomTimeId, ?User $user = null)
  * @method static User getUser(?User $user = null)
+ * @method static void delete(Booking $booking, ?User $user = null)
  */
 class BookingFacade extends Facade
 {

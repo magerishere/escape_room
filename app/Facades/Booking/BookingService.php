@@ -4,6 +4,7 @@ namespace App\Facades\Booking;
 
 
 use App\Exceptions\AlreadyBookedException;
+use App\Exceptions\UserCannotDeleteBookedException;
 use App\Facades\EscapeRoomTime\EscapeRoomTimeFacade;
 use App\Models\Booking;
 use App\Models\EscapeRoomTime;
@@ -47,6 +48,24 @@ class BookingService
         ]);
     }
 
+    public function delete(Booking $booking, ?User $user = null): void
+    {
+        if (!$this->canDelete($booking, $user)) {
+            throw new UserCannotDeleteBookedException();
+        }
+        $booking->delete();
+    }
+
+    /**
+     * get user
+     * @param User|null $user
+     * @return User
+     */
+    private function getUser(?User $user = null): User
+    {
+        return $user ?? Auth::user();
+    }
+
     /**
      * Check if user already booked in escape room
      * @param int $escapeRoomTimeId
@@ -76,12 +95,13 @@ class BookingService
     }
 
     /**
-     * get user
+     * only can delete self bookings
+     * @param Booking $booking
      * @param User|null $user
-     * @return User
+     * @return bool
      */
-    private function getUser(?User $user = null): User
+    private function canDelete(Booking $booking, ?User $user = null): bool
     {
-        return $user ?? Auth::user();
+        return $this->getUser($user)->id === $booking->user_id;
     }
 }

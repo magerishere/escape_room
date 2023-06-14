@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $target = now();
+    $source = now()->addYears(3);
+    dump($target, $source);
+    return $target->isSameDay($source, false);
+    return $target->day === $source->day && $target->isSameMonth($source, false);
     return view('welcome');
 });

@@ -49,6 +49,7 @@ class BookingController extends ApiController
      */
     public function destroy(Booking $booking)
     {
-        //
+        BookingFacade::delete($booking);
+        return apiResponseMessage(__('api.booking_deleted'));
     }
 }
