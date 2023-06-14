@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use \Illuminate\Http\Request;
 
@@ -41,5 +42,19 @@ if (!function_exists('isApiRequest')) {
     function isApiRequest(Request $request): bool
     {
         return $request->is('api/*');
+    }
+}
+
+if (!function_exists('isSameDayAtMonth')) {
+    /**
+     * Check if two date at same day at month with or without same year
+     * @param Carbon $target
+     * @param Carbon $haystack
+     * @param bool $ofSameYear
+     * @return bool
+     */
+    function isSameDayAtMonth(Carbon $target, Carbon $haystack, bool $ofSameYear = true): bool
+    {
+        return $target->day === $haystack->day && $target->isSameMonth($haystack, $ofSameYear);
     }
 }

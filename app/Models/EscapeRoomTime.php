@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EscapeRoomTime extends Model
@@ -23,9 +24,9 @@ class EscapeRoomTime extends Model
         'price' => 'int'
     ];
 
-    public function date()
+    public function date(): BelongsTo
     {
-        return $this->belongsTo(EscapeRoomDate::class);
+        return $this->belongsTo(EscapeRoomDate::class, 'escape_room_date_id', 'id');
     }
 
 
