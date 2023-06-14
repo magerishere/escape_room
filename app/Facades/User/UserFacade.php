@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static User|null getByEmail
+ * @method static User|null getByEmail(string $email)
  */
 class UserFacade extends Facade
 {
