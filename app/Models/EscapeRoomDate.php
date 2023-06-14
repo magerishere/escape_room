@@ -23,7 +23,7 @@ class EscapeRoomDate extends Model
 
     public function room(): BelongsTo
     {
-        return $this->belongsTo(EscapeRoom::class);
+        return $this->belongsTo(EscapeRoom::class, 'escape_room_id', 'id');
     }
 
     public function times(): HasMany

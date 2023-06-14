@@ -4,6 +4,7 @@ namespace App\Facades\Booking;
 
 
 use App\Exceptions\AlreadyBookedException;
+use App\Exceptions\FullyBookedException;
 use App\Exceptions\UserCannotDeleteBookedException;
 use App\Facades\EscapeRoomTime\EscapeRoomTimeFacade;
 use App\Models\Booking;
@@ -31,15 +32,21 @@ class BookingService
      * @param int $escapeRoomTimeId
      * @param User|null $user
      * @return Booking
-     * @throws AlreadyBookedException
+     * @throws AlreadyBookedException|FullyBookedException
      */
     public function create(int $escapeRoomTimeId, ?User $user = null): Booking
     {
+        $escapeRoomTime = EscapeRoomTimeFacade::getById($escapeRoomTimeId);
+        $escapeRoom = $escapeRoomTime->room;
+        // if is fully booked escape room
+        if ($escapeRoom->isFulled()) {
+            throw new FullyBookedException();
+        }
+        // if is already booked by user
         if ($this->isAlreadyBooked($escapeRoomTimeId, $user)) {
             throw new AlreadyBookedException();
         }
 
-        $escapeRoomTime = EscapeRoomTimeFacade::getById($escapeRoomTimeId);
 
         return $this->getUser($user)->bookings()->create([
             'escape_room_time_id' => $escapeRoomTimeId,
@@ -48,6 +55,13 @@ class BookingService
         ]);
     }
 
+    /**
+     *  Delete booked
+     * @param Booking $booking
+     * @param User|null $user
+     * @return void
+     * @throws UserCannotDeleteBookedException
+     */
     public function delete(Booking $booking, ?User $user = null): void
     {
         if (!$this->canDelete($booking, $user)) {
