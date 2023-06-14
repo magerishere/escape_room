@@ -2,10 +2,11 @@
 
 namespace App\Facades\User;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Facade;
 
 /**
- *
+ * @method static User|null getByEmail
  */
 class UserFacade extends Facade
 {
