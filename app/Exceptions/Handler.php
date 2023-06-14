@@ -3,6 +3,12 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Validation\UnauthorizedException;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -26,5 +32,27 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+
     }
+
+    public function render($request, Throwable $e): JsonResponse|RedirectResponse|Response|\Symfony\Component\HttpFoundation\Response
+    {
+        if (!$request->is('api/*')) {
+            return parent::render($request, $e);
+        }
+
+        if ($e instanceof UnauthorizedException) {
+            return response()->json([
+                'message' => __('auth.failed'),
+            ]);
+        }
+
+        if ($e instanceof ValidationException) {
+            return response()->json([
+                'message' => $e->errors(),
+            ]);
+        }
+
+    }
+
 }
