@@ -32,10 +32,17 @@ class EscapeRoomTime extends Model
         return $this->belongsTo(EscapeRoomDate::class, 'escape_room_date_id', 'id');
     }
 
-    public function room(): Attribute
+    public function books()
     {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function isFulled(): Attribute
+    {
+        \Log::alert($this->books()->count());
+        \Log::alert($this->capacity);
         return Attribute::make(
-            get: fn() => $this->date->room,
+            get: fn(): bool => $this->books()->count() >= $this->capacity
         );
     }
 

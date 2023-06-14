@@ -36,17 +36,16 @@ class BookingService
      */
     public function create(int $escapeRoomTimeId, ?User $user = null): Booking
     {
-        $escapeRoomTime = EscapeRoomTimeFacade::getById($escapeRoomTimeId);
-        $escapeRoom = $escapeRoomTime->room;
-        // if is fully booked escape room
-        if ($escapeRoom->isFulled()) {
-            throw new FullyBookedException();
-        }
         // if is already booked by user
         if ($this->isAlreadyBooked($escapeRoomTimeId, $user)) {
             throw new AlreadyBookedException();
         }
 
+        $escapeRoomTime = EscapeRoomTimeFacade::getById($escapeRoomTimeId);
+        // if is fully booked escape room
+        if ($escapeRoomTime->isFulled) {
+            throw new FullyBookedException();
+        }
 
         return $this->getUser($user)->bookings()->create([
             'escape_room_time_id' => $escapeRoomTimeId,
