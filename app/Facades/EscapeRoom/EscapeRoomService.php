@@ -17,9 +17,15 @@ class EscapeRoomService
         return EscapeRoom::all();
     }
 
+    /**
+     * get as paginate
+     * @param int $perPage
+     * @return LengthAwarePaginator
+     */
     public function getAllAsPaginate(int $perPage = 20): LengthAwarePaginator
     {
         return EscapeRoom::paginate($perPage);
     }
+
 
 }

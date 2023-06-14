@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->foreignIdFor(\App\Models\EscapeRoomTheme::class)->nullable()->constrained()->nullOnDelete();
             $table->string('title', 120);
             $table->integer('max_uses'); // participant
+            $table->integer('price'); // Toman
             $table->softDeletes();
             $table->timestamps();
         });
