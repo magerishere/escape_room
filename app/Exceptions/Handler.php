@@ -7,13 +7,11 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\App;
 use Illuminate\Validation\UnauthorizedException;
 use Illuminate\Validation\ValidationException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
+use \Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class Handler extends ExceptionHandler
 {
@@ -44,21 +42,21 @@ class Handler extends ExceptionHandler
         if (!isApiRequest($request)) {
             return parent::render($request, $e);
         }
-
+        \Log::alert($e->getCode());
         if ($e instanceof UnauthorizedException) {
-            return apiResponseMessage(__('auth.failed'));
+            return apiResponseMessage(__('auth.failed'), SymfonyResponse::HTTP_UNAUTHORIZED);
         }
 
         if ($e instanceof AuthorizationException) {
-            return apiResponseMessage(__('auth.must_login'));
+            return apiResponseMessage(__('auth.must_login'), SymfonyResponse::HTTP_FORBIDDEN);
         }
 
         if ($e instanceof ValidationException) {
-            return apiResponseMessage($e->errors());
+            return apiResponseMessage($e->errors(), SymfonyResponse::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         if ($e instanceof ModelNotFoundException) {
-            return apiResponseMessage(__('api.not_found_model'));
+            return apiResponseMessage(__('api.not_found_model'), SymfonyResponse::HTTP_NOT_FOUND);
         }
 
         // by default in api request
