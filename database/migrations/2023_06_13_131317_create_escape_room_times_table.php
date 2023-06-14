@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->foreignIdFor(\App\Models\EscapeRoomDate::class)->constrained()->cascadeOnDelete();
             $table->time('begin');
             $table->time('end');
+            $table->integer('price');
             $table->softDeletes();
             $table->timestamps();
         });

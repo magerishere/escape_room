@@ -16,7 +16,8 @@ class EscapeRoomTimeResource extends JsonResource
     {
         return [
             'begin' => $this->begin->format('H:i:s'),
-            'end' => $this->end->format('H:i:s')
+            'end' => $this->end->format('H:i:s'),
+            'price' => $this->price
         ];
     }
 }
